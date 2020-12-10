@@ -1,0 +1,136 @@
+site_name: 'Yncrea - Cours SYSEXP'
+
+# Repository
+repo_name: yncrea-sysexp
+repo_url: https://github.com/jurocknsail/yncrea-sysexp
+edit_uri: ""
+site_description: >-
+  Ce cours fait partie du cours <b>ITII 2 - SYSEXP</b> pour <b>YNCREA Toulon</b> sur les systèmes d'exploitation et principalement les connaissances Linux et bases de programmation système.
+  <br><br>
+  <i>Le cours se déroule sur 4 jours et vise à donner aux étudiants un aperçu de la façon de travailler du système d'exploitation, une connaissance basique du shell et de programmation de processus.</i>
+
+
+nav:
+  - Home: index.md
+  - Day#1:
+    - Introduction: 00_intro.md
+    - Histoire: 01_history.md
+    - SGF: 02_sgf.md
+    - Noyau: 06_kernel.md
+    - Processus: 03_processus.md
+    - Ordonnancement: 04_ordonnancement.md
+    - TD - Les Bases: 05_tdOrdo.md
+    - "": 05_tdOrdo_corr.md
+    - UNIX: 20_linuxshell.md
+
+  - Day#2:
+    - Commandes Shell: 21_cmdshell.md
+    - TP Linux Commands: 22_tpShell.md
+    - "": 22_tpShell_corr.md
+    - Regexp: 23_regexp.md
+    - AWK: 24_awk.md
+    - TP Regexp: 30_tpRegexp.md
+    - "": 30_tpRegexp_corr.md
+
+  - Day#3:
+    - Programmation Système - TP1 Echauffement : 41_progsys_tp1_proc.md
+    - "" : 41_progsys_tp1_proc_corr.md
+    - Programmation Système - Fork: 40_progsys_fork.md
+    - Programmation Système - Execv: 40_progsys_execv.md
+    - Programmation Système - TP2 Fork/Execv : 41_progsys_tp2_proc.md
+    - "" :  41_progsys_tp2_proc_corr.md
+
+  - Day#4:
+    - Programmation Système - Signaux: 40_progsys_signals.md
+    - Programmation Système - TP3 Signaux : 41_progsys_tp3_sig.md
+    - "" : 41_progsys_tp3_sig_corr.md
+    - Programmation Système - E/S Bas Niveau: 40_progsys_files.md
+    - Programmation Système - TP4 E/S Bas Niveau : 41_progsys_tp4_fic.md
+    - "" : 41_progsys_tp4_fic_corr.md
+    - Programmation Système - Pipes: 40_progsys_pipes.md
+    - Programmation Système - TP5 Pipes : 41_progsys_tp5_pipes.md
+    - "" : 41_progsys_tp5_pipes_corr.md
+
+  - Projets:
+    - Commun: 100_projets.md
+    - Sujet 1 - Reveil: 100_projets_sujet1.md
+    - Sujet 2 - Server Q&A: 100_projets_sujet2.md
+    - Sujet 3 - Equipes de Processus: 100_projets_sujet3.md
+    - Sujets Custom: 100_projets_sujet_custom.md
+theme:
+  language: en
+  name: 'material'
+  logo: assets/images/yncrea.png
+  favicon: assets/images/yncrea.png
+  palette:
+    primary: cyan
+    accent: cyan
+  font:
+    text: Roboto
+    code: Roboto Mono
+  features:
+    - tabs
+    - instant
+    - navigation.instant
+    - navigation.tabs
+  custom_dir: material
+
+markdown_extensions:
+  - admonition
+  - abbr
+  - attr_list
+  - def_list
+  - footnotes
+  - meta
+  - toc:
+      permalink: ⚓︎
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      repo_url_shorthand: true
+      user: squidfunk
+      repo: mkdocs-material
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets:
+      check_paths: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+copyright: '&copy; 2020 Julien Berger'
+
+# Customization
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/jurocknsail
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/julien-berger-0a9671154/
+
+extra_javascript:
+  - javascripts/config.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+# Google Analytics
+google_analytics:
+  - !!python/object/apply:os.getenv ["GOOGLE_ANALYTICS_KEY"]
+  - auto
