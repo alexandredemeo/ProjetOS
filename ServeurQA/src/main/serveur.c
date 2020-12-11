@@ -15,7 +15,7 @@ int main(){
 
 int p1 = 0;
 int dp;
-int tmp=1151,pidclient;
+int pidclient;
 char com[200]="";
 char oldcom[200];
 char ctrld[10]="ctrld";
@@ -24,28 +24,39 @@ mkfifo("pipe" ,0666);
 
 p1 = fork();
 
+
+
 if(p1 != 0){
 
-dp=open("pipe",O_RDONLY);
-
-read(dp, &tmp,sizeof(int));
-
 printf("---------SERVEUR---------\n");
-printf("le pid du client est %d \n", tmp);
-pidclient=tmp;
 
-	while(strcmp(com,ctrld)!=0){
+while(1){
 
-	for(int i=0;i<200;i++){
-	com[i]='\0';
-	}
-	read(dp,com,200*sizeof(char));
-	printf("Le client a ecrit :\n %s\n", com);
+for(int i=0;i<200;i++){
+com[i]='\0';
+}
 
-	}
+dp=open("pipe",O_RDONLY);
+read(dp, &pidclient,sizeof(int));
+printf("le pid du client est %d \n", pidclient);
 
-kill(p1,SIGKILL);
+while(strcmp(com,ctrld)!=0){
+
+for(int i=0;i<200;i++){
+com[i]='\0';
+}
+
+read(dp,com,200*sizeof(char));
+printf("Le client a ecrit :\n %s\n", com);
+
+}
+
 close(dp);
+
+}
+
+
+
 }
 else{
 

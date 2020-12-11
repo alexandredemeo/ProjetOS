@@ -16,16 +16,15 @@ int i=1;
 int main(int argc, char * argv[]){
 
 int des;
-char line;
-int buf=getpid();
+int pid=getpid();
 char com[200]="\0";
 char ctrld[10]="ctrld";
 
 des=open(argv[1],O_WRONLY);
-write(des,&buf,sizeof(int));
-    sleep(2);
+write(des,&pid,sizeof(int));
+sleep(2);
 
-printf("voici mon pid : %d\n", buf);
+printf("voici mon pid : %d\n", pid);
 
 while(i!=0){
 
@@ -37,8 +36,10 @@ i=0;
 write(des,com,(strlen(com)*sizeof(char)));
 }
 }
+
 write(des,ctrld,strlen(ctrld)*sizeof(char));
 close(des);
+kill(pid,SIGKILL);
 exit(0);
 return 0;
 }
