@@ -1117,30 +1117,27 @@
 -	Un processus serveur  </p> 
 Les processus ne sont pas identiques mais forment un système coopératif se traduisant par un échange de données.  </p>
 
-<p><img align="left" alt="Vues Centriques et en Couches" src="../assets/images/intro/os_intro.jpg" title="Vues Centriques et en Couches" /></p>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
-<p><ins>Quelques exemples d'OS</ins> : <br />
-    - <strong>Unix based</strong> : Linux, Mac, Android, iOS ...<br />
-    - <strong>Windows</strong> : XP, Vista, 7, 10 ...  </p>
-<p><img align="left" alt="OS Examples" src="../assets/images/intro/os_examples.jpg" title="OS Examples" /></p>
+<p><ins>Quelques exemples d'architectures client-serveur</ins> : <br />
+    - La consultation de pages sur un site Web fonctionne sur une architecture client–serveur.<br />
+    - La visioconférence : autant de clients que de participants.  </p>
+<p><img align="left" alt="OS Examples" src="../assets/images/intro/exempleclientserver.png" title="OS Examples" /></p>
 </div>
-<p>On peut voir l'OS de duex points de vues différents :  </p>
-<ul>
-<li>Utilisateur Lambda : Une IHM  </li>
-<li>Un développeur : Un ensemble d'appels systèmes</li>
-</ul>
 <hr />
-<h2 id="fonctions-dun-os">Fonctions d'un OS<a class="headerlink" href="#fonctions-dun-os" title="Permanent link">⚓︎</a></h2>
-<h3 id="offrir-une-interface-de-programmation-interpreteur-de-commandes">Offrir une interface de programmation &amp; interpreteur de commandes<a class="headerlink" href="#offrir-une-interface-de-programmation-interpreteur-de-commandes" title="Permanent link">⚓︎</a></h3>
+<h2 id="fonctionnement">Fonctionnement<a class="headerlink" href="#fonctionnement" title="Permanent link">⚓︎</a></h2>
+<h3 id="rôle-du-client">Rôle du client<a class="headerlink" href="#rôle-du-client" title="Permanent link">⚓︎</a></h3>
 <div class="admonition abstract">
-<p>Un IDE, Une Command Line etc ...</p>
+<p>Le client effectue une demande de service auprès du serveur (requête).  </p>  
+  De plus il initie le contact, ouvre la session.  </p>
 </div>
-<h3 id="offrir-une-interface-operateur-conviviale">Offrir une interface opérateur conviviale<a class="headerlink" href="#offrir-une-interface-operateur-conviviale" title="Permanent link">⚓︎</a></h3>
+<h3 id="rôle-du-serveur">Rôle du serveur<a class="headerlink" href="#rôle-du-serveur" title="Permanent link">⚓︎</a></h3>
 <div class="admonition abstract">
-<p>Pour les non programmeurs. Ceci n'est pas obligatoire ;)</p>
+<p>Le serveur est la partie de l'application qui offre un service. Le serveur est à l'écoute des requêtes clientes, il répond au service demandé par le client.  </p> 
+  Un programme serveur est en permanence en attente de requêtes et ne peut répondre qu’à un client en même temps.</p>
 </div>
-<h3 id="optimiser-lutilisation-des-elements-du-systeme-informatique">Optimiser l’utilisation des éléments du système informatique :<a class="headerlink" href="#optimiser-lutilisation-des-elements-du-systeme-informatique" title="Permanent link">⚓︎</a></h3>
+<h3 id="le-client-et-le-serveur-sont-generalement-localises-sur-deux-machines-istinctes">Le Client et le serveur sont généralement localisés sur deux machines distinctes<a class="headerlink" href="#le-client-et-le-serveur-sont-generalement-localises-sur-deux-machines-istinctes" title="Permanent link">⚓︎</a></h3>
+<p><img align="left" alt="Client serveur" src="../assets/images/intro/imageun.png" title="Client serveur" /></p>
 <h4 id="gestion-du-processeur">Gestion du processeur<a class="headerlink" href="#gestion-du-processeur" title="Permanent link">⚓︎</a></h4>
 <div class="admonition abstract">
 <p>Le système doit gérer l'allocation du processeur aux différents programmes pouvant s'exécuter (les processus). <br />
