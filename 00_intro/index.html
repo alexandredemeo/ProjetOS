@@ -1159,38 +1159,6 @@ Les processus ne sont pas identiques mais forment un système coopératif se tra
    - les réponses (résultats, indicateur éventuel d’exécution ou d’erreur).  </p>
 </div>
 <p><img alt="OS Functions" src="../assets/images/intro/os_functions.jpg" title="OS Functions" /></p>
-<h4 id="gestion-du-processeur">Gestion du processeur<a class="headerlink" href="#gestion-du-processeur" title="Permanent link">⚓︎</a></h4>
-<div class="admonition abstract">
-<p>Le système doit gérer l'allocation du processeur aux différents programmes pouvant s'exécuter (les processus). <br />
-Cette allocation se fait par le biais d'un algorithme d'ordonnancement qui  planifie l'exécution des programmes. <br />
-Selon le type de système d'exploitation, l'algorithme d'ordonnancement répond à des objectifs différents<br />
-(Ex. Systèmes Temps Réel)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Définition d'un Processus</p>
-<p><strong>Processus = programme en cours d'exécution.</strong></p>
-<p>1 Processus possède trois éléments :  </p>
-<ul>
-<li>programme exécutable  </li>
-<li>données associées au programme  </li>
-<li>contexte d’exécution du programme  </li>
-</ul>
-</div>
-<h4 id="gestion-de-la-concurrence">Gestion de la concurrence<a class="headerlink" href="#gestion-de-la-concurrence" title="Permanent link">⚓︎</a></h4>
-<div class="admonition abstract">
-<p>Comme plusieurs programmes coexistent en RAM, ceux-ci peuvent vouloir communiquer pour échanger des données.<br />
-Par ailleurs, il faut synchroniser l'accès aux données partagées afin de maintenir leur cohérence. <br />
-Le système offre des outils de communication et de synchronisation entre programmes.</p>
-</div>
-<h4 id="gestion-des-entreessorties">Gestion des entrées/sorties<a class="headerlink" href="#gestion-des-entreessorties" title="Permanent link">⚓︎</a></h4>
-<div class="admonition abstract">
-<p>Le système doit gérer l'accès aux périphériques, c'est-à-dire faire la liaison entre les appels de haut niveau des programmes utilisateurs (exemple getchar()) et les opérations de bas niveau de l‘unité d’exécution responsable du périphérique (UE clavier) <br />
-C'est le pilote d'entrées/sorties (driver) qui assure cette correspondance.</p>
-</div>
-<h4 id="gestion-des-objets-externes">Gestion des objets externes<a class="headerlink" href="#gestion-des-objets-externes" title="Permanent link">⚓︎</a></h4>
-<div class="admonition abstract">
-<p>La mémoire centrale est une mémoire volatile (RAM). Aussi, toutes les données devant être conservées au delà de l'arrêt de la machine, doivent être stockées sur une mémoire de masse ( disque dur ).  </p>
-</div>
 <h4 id="gestion-de-lacces-au-reseau">Gestion de l’accès au réseau<a class="headerlink" href="#gestion-de-lacces-au-reseau" title="Permanent link">⚓︎</a></h4>
 <div class="admonition abstract">
 <p>Le système doit permettre à des exécutions de programmes, placées sur des machines distinctes, de communiquer.<br />
