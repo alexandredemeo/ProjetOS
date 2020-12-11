@@ -22,6 +22,8 @@ char com[200]="\0";
 char ctrld[10]="ctrld";
 
 des=open("pipe",O_WRONLY);
+write(des,&buf,sizeof(int));
+    sleep(2);
 
 printf("voici mon pid : %d\n", buf);
 

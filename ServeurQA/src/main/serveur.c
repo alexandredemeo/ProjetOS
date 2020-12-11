@@ -15,6 +15,7 @@ int main(int argc, char * argv[]){
 
 int p1 = 0;
 int dp;
+int tmp=1151,pidclient;
 char com[200]="";
 char oldcom[200];
 char ctrld[10]="ctrld";
@@ -28,9 +29,11 @@ if(p1 != 0){
 
 dp=open("pipe",O_RDONLY);
 
+read(dp, &tmp,sizeof(int));
 
 printf("---------SERVEUR---------\n");
-printf("le pid du client est %d \n", p1);
+printf("le pid du client est %d \n", tmp);
+pidclient=tmp;
 
 	while(strcmp(com,ctrld)!=0){
 
