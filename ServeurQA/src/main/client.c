@@ -21,8 +21,8 @@ char com[200]="\0";
 char ctrld[10]="ctrld";
 
 des=open(argv[1],O_WRONLY);
-write(des,&pid,sizeof(int));
-sleep(2);
+//write(des,&pid,sizeof(int));
+//sleep(2);
 
 printf("voici mon pid : %d\n", pid);
 
@@ -33,10 +33,11 @@ printf("Saisir la commande a envoyer au serveur :");
 if(fgets(com, 200, stdin)==NULL){
 i=0;
 }else{
+write(des,&pid,sizeof(int));
 write(des,com,(strlen(com)*sizeof(char)));
 }
 }
-
+write(des,&pid,sizeof(int));
 write(des,ctrld,strlen(ctrld)*sizeof(char));
 close(des);
 kill(pid,SIGKILL);

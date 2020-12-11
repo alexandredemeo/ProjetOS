@@ -11,7 +11,20 @@
 #include <errno.h>
 #include <string.h>
 
-int main(){
+void fork_it(int n)
+{
+int i;
+pid_t f=1;
+
+for(i=1;i<n && f>0;i++)
+{
+  f=fork();
+}
+
+  execl("/usr/bin/xterm","xterm","-e","./client","pipe",NULL);
+
+}
+int main(int argc, char * argv[]){
 
 int p1 = 0;
 int dp;
@@ -21,7 +34,7 @@ char oldcom[200];
 char ctrld[10]="ctrld";
 unlink("pipe");
 mkfifo("pipe" ,0666);
-
+int nb_clients=atoi(argv[3]);
 p1 = fork();
 
 
@@ -37,8 +50,8 @@ com[i]='\0';
 }
 
 dp=open("pipe",O_RDONLY);
-read(dp, &pidclient,sizeof(int));
-printf("le pid du client est %d \n", pidclient);
+//read(dp, &pidclient,sizeof(int));
+//printf("le pid du client est %d \n", pidclient);
 
 while(strcmp(com,ctrld)!=0){
 
@@ -46,8 +59,9 @@ for(int i=0;i<200;i++){
 com[i]='\0';
 }
 
+read(dp, &pidclient,sizeof(int));
 read(dp,com,200*sizeof(char));
-printf("Le client a ecrit :\n %s\n", com);
+printf("Le client %d a ecrit :\n %s\n",pidclient, com);
 
 }
 
@@ -59,8 +73,8 @@ close(dp);
 
 }
 else{
-
-execl("/usr/bin/xterm","xterm","-e","./client","pipe",NULL);
+fork_it(2);
+//execl("/usr/bin/xterm","xterm","-e","./client","pipe",NULL);
 }
 
 return 0;
