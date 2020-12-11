@@ -1148,6 +1148,11 @@ Les processus ne sont pas identiques mais forment un système coopératif se tra
 <p>Le serveur est la partie de l'application qui offre un service. Le serveur est à l'écoute des requêtes clientes, il répond au service demandé par le client.  </p> 
   Un programme serveur est en permanence en attente de requêtes et ne peut répondre qu’à un client en même temps.</p>
 </div>
+<h3 id="le-modele-client-serveur">Le modèle client-serveur<a class="headerlink" href="#le-modele-client-serveur" title="Permanent link">⚓︎</a></h3>
+<div class="admonition abstract">
+<p>Le Client et le serveur sont généralement localisés sur deux machines distinctes.</p>
+</div>
+<p><img alt="imageun" src="../assets/images/intro/imageun.jpg" title="imageun" /></p>
 <h3 id="comme-deja-evoque-celles-ci-communiquent-par-messages-:">Comme déjà évoqué, celles-ci communiquent par messages :<a class="headerlink" href="#comme-deja-evoque-celles-ci-communiquent-par-messages-:" title="Permanent link">⚓︎</a></h3>
 <div class="admonition abstract">
 <p>- les requêtes (paramètres d’appel, spécification du service requis).  </p> 
@@ -1191,11 +1196,6 @@ C'est le pilote d'entrées/sorties (driver) qui assure cette correspondance.</p>
 <p>Le système doit permettre à des exécutions de programmes, placées sur des machines distinctes, de communiquer.<br />
 Le système offre des outils de type socket pour accéder à la couche de protocoles de communication.</p>
 </div>
-<h4 id="gestion-de-la-protection">Gestion de la protection<a class="headerlink" href="#gestion-de-la-protection" title="Permanent link">⚓︎</a></h4>
-<div class="admonition abstract">
-<p>Le système doit fournir des mécanismes garantissant que ses ressources (CPU, mémoire, fichiers,…) ne peuvent être utilisées que par les programmes auxquels les droits nécessaires ont été accordés.</p>
-</div>
-<p><img alt="OS Functions" src="../assets/images/intro/os_functions.jpg" title="OS Functions" /></p>
 <div class="footnote">
 <hr />
 <ol>
