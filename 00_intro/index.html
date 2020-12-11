@@ -17,7 +17,7 @@
     
     
       
-        <title>Introduction - Yncrea - Cours SYSEXP</title>
+        <title>Introduction - Projet - Server Q&A</title>
       
     
     
@@ -1124,31 +1124,20 @@
                 
                 <h1 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">⚓︎</a></h1>
 <hr />
-<h2 id="objectifs">Objectifs<a class="headerlink" href="#objectifs" title="Permanent link">⚓︎</a></h2>
-<p>Le 1er objectif est de découvrir quel est le <strong>rôle d'un OS</strong> afin de pouvoir coder des programmes utilisant des <em>processus / threads</em>.<br />
-Cela permettra de paralléliser des actions dans nos future programmes.<br />
-Aussi, nous verrons de manière simplifiée comment sont ordonnancés les processus, puis comment sont organisés les fichiers.  </p>
-<hr />
 <h2 id="definition">Définition<a class="headerlink" href="#definition" title="Permanent link">⚓︎</a></h2>
-<p>Un OS est la <mark>couche logicielle</mark> qui permet et coordonne l’utilisation du matériel entre les différents programmes d’application.  </p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>C'est donc le lien entre l'homme et le hardware ! On parle <em>d'<strong>IHM</strong>- Interface Homme Machine</em></p>
-</div>
-<p><img align="left" alt="Vues Centriques et en Couches" src="../assets/images/intro/os_intro.jpg" title="Vues Centriques et en Couches" /></p>
+<p>Le modèle client-serveur repose sur une communication d’égal à égal entre les applications, la communication étant réalisée par dialogue entre processus deux à deux.  </p> 
+-	Un processus client  </p> 
+-	Un processus serveur  </p> 
+Les processus ne sont pas identiques mais forment un système coopératif se traduisant par un échange de données.  </p>
+
 <div class="admonition example">
 <p class="admonition-title">Example</p>
-<p><ins>Quelques exemples d'OS</ins> : <br />
-    - <strong>Unix based</strong> : Linux, Mac, Android, iOS ...<br />
-    - <strong>Windows</strong> : XP, Vista, 7, 10 ...  </p>
-<p><img align="left" alt="OS Examples" src="../assets/images/intro/os_examples.jpg" title="OS Examples" /></p>
+<p><ins>Quelques exemples d'architectures client-serveur</ins> : <br />
+    - La consultation de pages sur un site Web fonctionne sur une architecture client–serveur.<br />
+    - La visioconférence : autant de clients que de participants.  </p>
 </div>
-<p>On peut voir l'OS de duex points de vues différents :  </p>
-<ul>
-<li>Utilisateur Lambda : Une IHM  </li>
-<li>Un développeur : Un ensemble d'appels systèmes</li>
-</ul>
 <hr />
+<h2 id="fonctionnement">Fonctionnement<a class="headerlink" href="#fonctionnement" title="Permanent link">⚓︎</a></h2>
 <h2 id="fonctions-dun-os">Fonctions d'un OS<a class="headerlink" href="#fonctions-dun-os" title="Permanent link">⚓︎</a></h2>
 <h3 id="offrir-une-interface-de-programmation-interpreteur-de-commandes">Offrir une interface de programmation &amp; interpreteur de commandes<a class="headerlink" href="#offrir-une-interface-de-programmation-interpreteur-de-commandes" title="Permanent link">⚓︎</a></h3>
 <div class="admonition abstract">
