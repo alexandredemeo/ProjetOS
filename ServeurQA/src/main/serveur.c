@@ -34,7 +34,7 @@ char oldcom[200];
 char ctrld[10]="ctrld";
 unlink("pipe");
 mkfifo("pipe" ,0666);
-int nb_clients=atoi(argv[3]);
+int nb_clients=atoi(argv[1]);
 p1 = fork();
 
 
@@ -49,7 +49,7 @@ for(int i=0;i<200;i++){
 com[i]='\0';
 }
 
-dp=open("pipe",O_RDONLY);
+dp=open(argv[2],O_RDONLY);
 //read(dp, &pidclient,sizeof(int));
 //printf("le pid du client est %d \n", pidclient);
 
@@ -73,7 +73,7 @@ close(dp);
 
 }
 else{
-fork_it(2);
+fork_it(nb_clients);
 //execl("/usr/bin/xterm","xterm","-e","./client","pipe",NULL);
 }
 
