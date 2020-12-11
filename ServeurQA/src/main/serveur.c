@@ -13,41 +13,42 @@
 
 int main(int argc, char * argv[]){
     int p1 = 0;
-    char tmp[200];
-    int pidclient;
+    int tmp = 25310;
     int dp, f;
-    char buf;
-    char controld[200]="control+D";
+    char com[200];
+    char oldcom[200];
+    int pidclient;
+    char ctrld[2]="cd";
+    char* SHELL;
+    SHELL=getenv("SHELL");    
+
     unlink("pipe");
     mkfifo("pipe" ,0666);
 
 
     p1 = fork();
+    if(p1 != 0){
 
-if(p1==0)
-{   
-pidclient=getpid();
-}
-   if(p1 != 0){
-        system("clear");
         dp=open("pipe",O_RDONLY);
-        printf("-----------------------SERVEUR------------------------");
-        read(dp,tmp,200);
-       printf("%s",controld);
-       while(strcmp(controld,tmp)!=0)
-       {
+        read(dp, &tmp,sizeof(int));
+        printf("------SERVEUR---------\n");
+        printf("le pid du client est %d \n", tmp);
+        pidclient=tmp;
+        while(strcmp(com,ctrld)!=0)
+        {
+          com[1]='\0';
+          read(dp,com,200*sizeof(char));
+          printf("Le client a ecrit :\n %s\n", com);
 
-        printf("le client ecrit:\n");
-        printf("%s\n",tmp);
-
-       }
-        kill(p1,SIGKILL); 
-        execv("fermerterm.sh",NULL);
+ 
+        }
+        kill(pidclient,SIGKILL);
         close(dp);
     }
     else{
-        execv("client.sh",NULL);
+        //execv("client.sh",NULL);
+        execl("/usr/bin/xterm","xterm","-e","./client",NULL);
     }
-printf("le programme continu\n");
-   return 0;
+
+    return 0;
 }

@@ -1,3 +1,3 @@
 #!/bin/bash
 
-KILL pid
+client.sh && exit
