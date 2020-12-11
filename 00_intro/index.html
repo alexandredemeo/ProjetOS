@@ -1148,9 +1148,6 @@ Les processus ne sont pas identiques mais forment un système coopératif se tra
 <p>Le serveur est la partie de l'application qui offre un service. Le serveur est à l'écoute des requêtes clientes, il répond au service demandé par le client.  </p> 
   Un programme serveur est en permanence en attente de requêtes et ne peut répondre qu’à un client en même temps.</p>
 </div>
-<h3 id="le-client-et-le-serveur-sont-deux-machines-distinctes">Le Client et le serveur sont deux machines distinctes<a class="headerlink" href="#le-client-et-le-serveur-sont-deux-machines-distinctes" title="Permanent link">⚓︎</a></h3>
-<p><img align="left" alt="Clientserveur" src="../assets/images/intro/imageun.png" title="Clientserveur" /></p>
-</div>
 <h3 id="optimiser-lutilisation-des-elements-du-systeme-informatique">Optimiser l’utilisation des éléments du système informatique :<a class="headerlink" href="#optimiser-lutilisation-des-elements-du-systeme-informatique" title="Permanent link">⚓︎</a></h3>
 <h4 id="gestion-du-processeur">Gestion du processeur<a class="headerlink" href="#gestion-du-processeur" title="Permanent link">⚓︎</a></h4>
 <div class="admonition abstract">
@@ -1174,15 +1171,6 @@ Selon le type de système d'exploitation, l'algorithme d'ordonnancement répond 
 <p>Comme plusieurs programmes coexistent en RAM, ceux-ci peuvent vouloir communiquer pour échanger des données.<br />
 Par ailleurs, il faut synchroniser l'accès aux données partagées afin de maintenir leur cohérence. <br />
 Le système offre des outils de communication et de synchronisation entre programmes.</p>
-</div>
-<h4 id="gestion-de-la-memoire">Gestion de la mémoire<a class="headerlink" href="#gestion-de-la-memoire" title="Permanent link">⚓︎</a></h4>
-<div class="admonition abstract">
-<p>Le système doit gérer l'allocation de la RAM entre les différents programmes pouvant s'exécuter.<br />
-Comme la mémoire physique est souvent trop petite pour contenir la totalité des programmes, la gestion de la mémoire se fait selon le principe de la mémoire virtuelle.<br />
-A un instant donné, seules sont chargées en RAM les parties de code et données utiles à l'exécution.<br />
-Ainsi, chacun des processus <mark>accède à toute la mémoire</mark> à un instant T.  </p>
-<p>A cela on ajoute le mécanisme de SWAP qui permet de <mark>désengorger</mark> le système en déplaçant des modules executables sur la mémoire secondaire (le HDD).<br />
-C'est plus lent, mais au moins le système continue de fonctionner !</p>
 </div>
 <h4 id="gestion-des-entreessorties">Gestion des entrées/sorties<a class="headerlink" href="#gestion-des-entreessorties" title="Permanent link">⚓︎</a></h4>
 <div class="admonition abstract">
