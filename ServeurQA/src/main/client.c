@@ -13,7 +13,7 @@
 
 int i=1;
 
-int main(void){
+int main(int argc, char * argv[]){
 
 int des;
 char line;
@@ -21,7 +21,7 @@ int buf=getpid();
 char com[200]="\0";
 char ctrld[10]="ctrld";
 
-des=open("pipe",O_WRONLY);
+des=open(argv[1],O_WRONLY);
 write(des,&buf,sizeof(int));
     sleep(2);
 

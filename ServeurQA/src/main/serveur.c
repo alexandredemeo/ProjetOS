@@ -11,7 +11,7 @@
 #include <errno.h>
 #include <string.h>
 
-int main(int argc, char * argv[]){
+int main(){
 
 int p1 = 0;
 int dp;
@@ -19,7 +19,6 @@ int tmp=1151,pidclient;
 char com[200]="";
 char oldcom[200];
 char ctrld[10]="ctrld";
-
 unlink("pipe");
 mkfifo("pipe" ,0666);
 
@@ -50,7 +49,7 @@ close(dp);
 }
 else{
 
-execl("/usr/bin/xterm","xterm","-e","./client",NULL);
+execl("/usr/bin/xterm","xterm","-e","./client","pipe",NULL);
 }
 
 return 0;
