@@ -852,263 +852,81 @@
                   
                 
                 
-                <h1 id="programmation-systeme-signaux">Itération 2<a class="headerlink" href="#programmation-systeme-signaux" title="Permanent link">⚓︎</a></h1>
+<h1 id="programmation-systeme-signaux">It&eacute;ration 2 - Fonctionnement multi-client</h1>
 <hr />
-<h2 id="definition">Définition<a class="headerlink" href="#definition" title="Permanent link">⚓︎</a></h2>
+<h2 id="definition">Cahier des charges</h2>
 <div class="admonition abstract">
-<p>Les signaux constituent un mécanisme de fondamental de communication entre processus :<br />
-Ils sont  utilisés par un processus pour signaler à un autre processus (ou à un groupe de processus) l’arrivée d’un événement qui peut être :  </p>
-<p>– matériel<br />
-– lié au fonctionnement multitâche<br />
-– lié à une application spécifique  </p>
-<p>Ce sont des <mark><strong>interruptions logicielles</strong></mark> !</p>
+<ul>
+<li>Le programme server prends maintenant&nbsp;<strong>2 param&egrave;tres</strong></li>
+<li>Le nom du pipe</li>
+<li>Le nombre N de clients</li>
+<li>Au d&eacute;marrage il instancie N clients qui peuvent lui parler (<strong>1 client = 1 shell</strong>)</li>
+<li>Des clients peuvent &ecirc;tre cr&eacute;es manuellement en plus par la suite</li>
+<li>On&nbsp;prot&egrave;gela mort du server par&nbsp;CTRL+C</li>
+<li>Le serveur sait r&eacute;pondre &agrave; des questions basiques des clients (fix&eacute;es) :
+<ul>
+<li>
+<p><img title="progwait" src="../assets/images/processus/progwait.JPG" alt="progwait" /></p>
+</li>
+</ul>
+</li>
+</ul>
 </div>
 <hr />
-<h2 id="exemples-de-signaux">Exemples de Signaux<a class="headerlink" href="#exemples-de-signaux" title="Permanent link">⚓︎</a></h2>
+<h2 id="exemples-de-signaux">Fonctionnement</h2>
 <div class="admonition quote">
-<p>Liste non exhaustive ...  </p>
+<p>Liste non exhaustive ...</p>
 </div>
-<table>
-<thead>
-<tr>
-<th>Nom</th>
-<th>N°</th>
-<th>Fonction</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>SIGHUP</code></td>
-<td>1</td>
-<td>déconnection du terminal</td>
-</tr>
-<tr>
-<td><code>SIGINT</code></td>
-<td>2</td>
-<td>interruption <code>^C</code></td>
-</tr>
-<tr>
-<td><code>SIGQUIT</code></td>
-<td>3</td>
-<td>abandon <code>^\</code> (core)</td>
-</tr>
-<tr>
-<td><code>SIGKILL</code></td>
-<td>9</td>
-<td>destruction (ne peut être ignoré)</td>
-</tr>
-<tr>
-<td><strong><code>SIGUSR1</code></strong></td>
-<td><strong>10</strong></td>
-<td><strong>réservé à l’utilisateur (communication inter-processus)</strong></td>
-</tr>
-<tr>
-<td><strong><code>SIGUSR2</code></strong></td>
-<td><strong>12</strong></td>
-<td><strong>réservé à l’utilisateur (communication inter-processus)</strong></td>
-</tr>
-<tr>
-<td><code>SIGPIPE</code></td>
-<td>13</td>
-<td>essai d’écriture dans un pipe non ouvert</td>
-</tr>
-<tr>
-<td><code>SIGALRM</code></td>
-<td>14</td>
-<td>horloge (arrêt de l’horloge d’un processus: <code>alarm()</code>)</td>
-</tr>
-<tr>
-<td><code>SIGTERM</code></td>
-<td>15</td>
-<td>terminaison normale d’un processus</td>
-</tr>
-<tr>
-<td><code>SIGCHLD</code></td>
-<td>17</td>
-<td>mort d’un fils (envoyé au père)</td>
-</tr>
-<tr>
-<td><code>...</code></td>
-<td>...</td>
-<td>...</td>
-</tr>
-</tbody>
-</table>
 <div class="admonition tip">
 <p>Tout ces signaux se trouvent dans le fichier header : <code>signal.h</code></p>
 </div>
 <div class="admonition danger">
-<p>Le comportement par défaut des signaux <code>SIGUSR1</code> et <code>SIGUSR2</code> est : <code>SIGKILL</code> !   <br />
-Si non redéfinis, leur reception entrainera la mort du processus visé ...  </p>
+<p>Le comportement par d&eacute;faut des signaux <code>SIGUSR1</code> et <code>SIGUSR2</code> est : <code>SIGKILL</code> ! <br />Si non red&eacute;finis, leur reception entrainera la mort du processus vis&eacute; ...</p>
 </div>
 <hr />
-<h2 id="traitements">Traitements<a class="headerlink" href="#traitements" title="Permanent link">⚓︎</a></h2>
+<h2 id="traitements">Traitements</h2>
 <div class="admonition abstract">
-<p>Il y a 3 actions possibles lors de la reception d'un signal par un processus :<br />
-- L'<strong>ignorance</strong> : <code>SIG_IGN</code><br />
-- La prise en compte pour effectuer une <strong>action spécifique</strong> : <code>nomFonction</code><br />
-- La restauration du <strong>comportement par defaut</strong>  : <code>SIG_DFL</code></p>
+<p>Il y a 3 actions possibles lors de la reception d'un signal par un processus :<br />- L'<strong>ignorance</strong> : <code>SIG_IGN</code><br />- La prise en compte pour effectuer une <strong>action sp&eacute;cifique</strong> : <code>nomFonction</code><br />- La restauration du <strong>comportement par defaut</strong> : <code>SIG_DFL</code></p>
 </div>
 <div class="admonition warning">
-<p>Certains signaux ne peuvent pas être ignorés, par exemple <code>SIGKILL</code>.</p>
+<p>Certains signaux ne peuvent pas &ecirc;tre ignor&eacute;s, par exemple <code>SIGKILL</code>.</p>
 </div>
 <div class="admonition tip">
-<p>Dans le cas d'une action <strong>spécifique</strong> : <br />
-- l’action est faite dans une fonction qui doit être spécifiquement attachée au signal donné. <br />
-- cet attachement est valable pour toute la durée du programme.   </p>
-<p><ins>A l’arrivée du signal</ins> : <br />
-– le traitement en  est <mark><strong>interrompu</strong></mark>  <br />
-– la fonction est exécutée<br />
-– le traitement est repris où il en était avant <strong>l'interruption</strong>  </p>
+<p>Dans le cas d'une action <strong>sp&eacute;cifique</strong> : <br />- l&rsquo;action est faite dans une fonction qui doit &ecirc;tre sp&eacute;cifiquement attach&eacute;e au signal donn&eacute;. <br />- cet attachement est valable pour toute la dur&eacute;e du programme.</p>
+<p><ins>A l&rsquo;arriv&eacute;e du signal</ins> : <br />&ndash; le traitement en est <mark><strong>interrompu</strong></mark> <br />&ndash; la fonction est ex&eacute;cut&eacute;e<br />&ndash; le traitement est repris o&ugrave; il en &eacute;tait avant <strong>l'interruption</strong></p>
 </div>
 <hr />
-<h2 id="primitives">Primitives<a class="headerlink" href="#primitives" title="Permanent link">⚓︎</a></h2>
-<h3 id="signal">Signal<a class="headerlink" href="#signal" title="Permanent link">⚓︎</a></h3>
+<h2 id="primitives">Primitives</h2>
+<h3 id="signal">Signal</h3>
 <div class="admonition abstract">
-<p>La primitive <code>signal()</code> permet de spécifier le comportement d’un processus à la réception d’un signal donné.
-C'est une fonction <strong>non bloquante</strong> qu'il faut voir comme une configuration utilisée plus tard, lors de la reception du signal.  </p>
+<p>La primitive <code>signal()</code> permet de sp&eacute;cifier le comportement d&rsquo;un processus &agrave; la r&eacute;ception d&rsquo;un signal donn&eacute;. C'est une fonction <strong>non bloquante</strong> qu'il faut voir comme une configuration utilis&eacute;e plus tard, lors de la reception du signal.</p>
 </div>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
-<span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">signal</span> <span class="p">(</span><span class="kt">int</span> <span class="n">sig</span><span class="p">,</span> <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">fcn</span><span class="p">)(</span><span class="kt">int</span><span class="p">)))(</span><span class="kt">int</span><span class="p">)</span>  
-
-<span class="o">-</span> <span class="nl">sig</span> <span class="p">:</span> <span class="n">numéro</span> <span class="n">du</span> <span class="n">signal</span>
-<span class="o">-</span> <span class="p">(</span><span class="o">*</span><span class="n">fcn</span><span class="p">)</span> <span class="o">:</span> <span class="n">action</span> <span class="n">après</span> <span class="n">réception</span> 
-</code></pre></div>
-</td></tr></table>
 <div class="admonition tip">
-<p>-&gt; Intercepte le signal de numéro sig <br />
--&gt; Exécute la fonction fcn  </p>
+<p>-&gt; Intercepte le signal de num&eacute;ro sig <br />-&gt; Ex&eacute;cute la fonction fcn</p>
 </div>
-<h4 id="exemples">Exemples<a class="headerlink" href="#exemples" title="Permanent link">⚓︎</a></h4>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">signal</span><span class="p">(</span><span class="n">SIGUSR1</span><span class="p">,</span> <span class="n">traite</span><span class="p">)</span> <span class="p">;</span>
-<span class="n">signal</span><span class="p">(</span><span class="n">SIGINT</span><span class="p">,</span> <span class="n">SIG_IGN</span><span class="p">);</span>
-</code></pre></div>
-</td></tr></table>
-<h3 id="kill">Kill<a class="headerlink" href="#kill" title="Permanent link">⚓︎</a></h3>
+<h4 id="exemples">Exemples</h4>
+<h3 id="kill">Kill</h3>
 <div class="admonition abstract">
-<p>La primitive <code>kill()</code> permet <strong>d’envoyer un signal</strong> à un processus, via son <strong>PID</strong>.<br />
-L’envoi de signal ne peut se faire qu’entre tâches de même UID.<br />
-Si on utilise PID = 0 : tous les processus du <ins>groupe</ins> sont concernés (broadcast).</p>
+<p>La primitive <code>kill()</code> permet <strong>d&rsquo;envoyer un signal</strong> &agrave; un processus, via son <strong>PID</strong>.<br />L&rsquo;envoi de signal ne peut se faire qu&rsquo;entre t&acirc;ches de m&ecirc;me UID.<br />Si on utilise PID = 0 : tous les processus du <ins>groupe</ins> sont concern&eacute;s (broadcast).</p>
 </div>
 <div class="admonition danger">
-<p>Elle envoie n'importe quel signal, pas uniquement <code>SIGKILL</code> malgrès son nom !!</p>
+<p>Elle envoie n'importe quel signal, pas uniquement <code>SIGKILL</code> malgr&egrave;s son nom !!</p>
 </div>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
-<span class="kt">int</span> <span class="nf">kill</span><span class="p">(</span><span class="kt">int</span> <span class="n">pid</span><span class="p">,</span><span class="kt">int</span> <span class="n">no_signal</span><span class="p">);</span>  
-
-<span class="err">–</span> <span class="n">pid</span> <span class="n">no</span> <span class="n">du</span> <span class="n">process</span> <span class="n">récepteur</span>
-<span class="err">–</span> <span class="nl">résultat</span> <span class="p">:</span> <span class="mi">0</span> <span class="n">si</span> <span class="n">le</span> <span class="n">signal</span> <span class="n">a</span> <span class="err">é</span><span class="n">té</span> <span class="n">envoyé</span><span class="p">,</span> <span class="mi">-1</span> <span class="n">sinon</span> <span class="p">(</span><span class="n">erreur</span><span class="p">)</span>
-</code></pre></div>
-</td></tr></table>
-<h4 id="exemples_1">Exemples<a class="headerlink" href="#exemples_1" title="Permanent link">⚓︎</a></h4>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">kill</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">SIGUSR1</span><span class="p">);</span>
-<span class="n">kill</span> <span class="p">(</span><span class="mi">1234</span><span class="p">,</span><span class="n">SIGKILL</span><span class="p">);</span>
-</code></pre></div>
-</td></tr></table>
-<h3 id="pause">Pause<a class="headerlink" href="#pause" title="Permanent link">⚓︎</a></h3>
+<h4 id="exemples_1">Exemples</h4>
+<h3 id="pause">Pause</h3>
 <div class="admonition abstract">
-<p>La primitive <code>pause()</code> correspond à de l’attente pure, d'un signal <strong>quelconque</strong>.
-C'est une fonction <strong>bloquante</strong>.  </p>
+<p>La primitive <code>pause()</code> correspond &agrave; de l&rsquo;attente pure, d'un signal <strong>quelconque</strong>. C'est une fonction <strong>bloquante</strong>.</p>
 </div>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="nf">pause</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
-
-<span class="o">-</span> <span class="n">Elle</span> <span class="n">ne</span> <span class="n">fait</span> <span class="n">rien</span>
-<span class="o">-</span> <span class="n">Attend</span> <span class="n">l</span><span class="err">’</span><span class="n">arrivée</span> <span class="n">d</span><span class="err">’</span><span class="n">un</span> <span class="n">signal</span> <span class="n">quelconque</span>
-</code></pre></div>
-</td></tr></table>
-<h4 id="exemple">Exemple<a class="headerlink" href="#exemple" title="Permanent link">⚓︎</a></h4>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">pause</span><span class="p">();</span>
-</code></pre></div>
-</td></tr></table>
-<h3 id="alarm">Alarm<a class="headerlink" href="#alarm" title="Permanent link">⚓︎</a></h3>
+<h4 id="exemple">Exemple</h4>
+<h3 id="alarm">Alarm</h3>
 <div class="admonition abstract">
-<p>La primitive <code>alarm()</code> envoi un signal de type <code>SIGALRM</code> au processus appelant après laps de temps (en seconde).<br />
-C'est une fonction <strong>non bloquante</strong>.</p>
+<p>La primitive <code>alarm()</code> envoi un signal de type <code>SIGALRM</code> au processus appelant apr&egrave;s laps de temps (en seconde).<br />C'est une fonction <strong>non bloquante</strong>.</p>
 </div>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7
-8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
-<span class="kt">int</span> <span class="nf">alarm</span> <span class="p">(</span><span class="kt">int</span> <span class="n">sec</span><span class="p">);</span>
-
-<span class="o">-</span> <span class="nl">resultat</span> <span class="p">:</span> <span class="n">temps</span> <span class="err">é</span><span class="n">coulé</span> <span class="n">depuis</span> <span class="n">le</span> <span class="n">dernier</span> <span class="n">appel</span> <span class="err">à</span> <span class="n">alarm</span><span class="p">();</span>
-
-<span class="nl">Note</span> <span class="p">:</span> 
-<span class="o">-</span> <span class="n">l</span><span class="err">&#39;</span><span class="n">appel</span> <span class="err">à</span>  <span class="n">alarm</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="n">annule</span> <span class="n">toutes</span> <span class="n">les</span> <span class="n">alarmes</span> <span class="n">enregistrées</span> <span class="o">!</span>
-<span class="o">-</span> <span class="n">chaque</span> <span class="n">appel</span> <span class="n">enreigistre</span> <span class="n">une</span> <span class="n">nouvelle</span> <span class="n">alarme</span><span class="p">,</span> <span class="n">en</span> <span class="n">indiquant</span> <span class="n">en</span> <span class="n">retour</span> <span class="n">le</span> <span class="n">temps</span> <span class="n">restant</span> <span class="n">pour</span> <span class="n">l</span><span class="err">&#39;</span><span class="n">alarme</span> <span class="n">précédemment</span> <span class="n">enregistrée</span><span class="p">.</span>
-</code></pre></div>
-</td></tr></table>
-<h4 id="exemple_1">Exemple<a class="headerlink" href="#exemple_1" title="Permanent link">⚓︎</a></h4>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">alarm</span><span class="p">(</span><span class="mi">12</span><span class="p">);</span>
-</code></pre></div>
-</td></tr></table>
+<h4 id="exemple_1">Exemple</h4>
 <hr />
-<h2 id="exemple-complet">Exemple complet<a class="headerlink" href="#exemple-complet" title="Permanent link">⚓︎</a></h2>
-<table border="0">
-<tr>
-    <td>
-        Dans le père :
-    </td> 
-    <td>
-        Dans le fils :
-    </td>
-</tr>
-
-<tr>
-    <td>
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="kt">int</span> <span class="n">pid</span> <span class="p">;</span> 
-    <span class="n">pid</span><span class="o">=</span><span class="n">fork</span><span class="p">();</span> 
-    <span class="k">if</span><span class="p">(</span><span class="n">pid</span> <span class="o">=</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="n">execv</span><span class="p">(</span><span class="s">&quot;fille&quot;</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
-<span class="hll">    <span class="n">signal</span><span class="p">(</span><span class="n">SIGUSR1</span><span class="p">,</span><span class="n">fonc</span><span class="p">);</span> 
-</span>    <span class="k">for</span><span class="p">(;;)</span>
-    <span class="p">{</span>
-        <span class="n">printf</span><span class="p">(</span><span class="s">&quot; je boucle</span><span class="se">\n</span><span class="s"> &quot;</span><span class="p">);</span>
-        <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> 
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kt">void</span> <span class="nf">fonc</span><span class="p">(</span><span class="kt">int</span> <span class="n">sig</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot; signal recu %d</span><span class="se">\n</span><span class="s"> &quot;</span><span class="p">,</span> <span class="n">sig</span><span class="p">);</span>
-    <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div>
-    </td>
-    <td>
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;signal.h&gt;</span><span class="cp"></span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span> 
-<span class="hll">    <span class="n">kill</span><span class="p">(</span><span class="n">getppid</span><span class="p">(),</span><span class="n">SIGUSR1</span><span class="p">);</span> 
-</span>    <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div>
-    </td>
-</tr>
-</table>
-
+<h2 id="exemple-complet">Exemple complet</h2>
 <div class="admonition warning">
-<p>La position de l'appel à <code>signal()</code> dans le programme est très importante !<br />
-La configuration doit être faite avant la reception du signal en question !  </p>
+<p>La position de l'appel &agrave; <code>signal()</code> dans le programme est tr&egrave;s importante !<br />La configuration doit &ecirc;tre faite avant la reception du signal en question !</p>
 </div>
                 
               
