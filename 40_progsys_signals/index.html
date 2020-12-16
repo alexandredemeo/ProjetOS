@@ -867,43 +867,6 @@
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img title="progwait" src="../assets/images/processus/progwait.JPG" alt="progwait" /></p>
 <hr />
 <h2 id="exemples-de-signaux">Fonctionnement</h2>
-<div class="admonition quote">
-<p>Liste non exhaustive ...</p>
-</div>
-<div class="admonition tip">
-<p>Tout ces signaux se trouvent dans le fichier header : <code>signal.h</code></p>
-</div>
-<div class="admonition danger">
-<p>Le comportement par d&eacute;faut des signaux <code>SIGUSR1</code> et <code>SIGUSR2</code> est : <code>SIGKILL</code> ! <br />Si non red&eacute;finis, leur reception entrainera la mort du processus vis&eacute; ...</p>
-</div>
-<hr />
-<h2 id="traitements">Traitements</h2>
-<div class="admonition abstract">
-<p>Il y a 3 actions possibles lors de la reception d'un signal par un processus :<br />- L'<strong>ignorance</strong> : <code>SIG_IGN</code><br />- La prise en compte pour effectuer une <strong>action sp&eacute;cifique</strong> : <code>nomFonction</code><br />- La restauration du <strong>comportement par defaut</strong> : <code>SIG_DFL</code></p>
-</div>
-<div class="admonition warning">
-<p>Certains signaux ne peuvent pas &ecirc;tre ignor&eacute;s, par exemple <code>SIGKILL</code>.</p>
-</div>
-<div class="admonition tip">
-<p>Dans le cas d'une action <strong>sp&eacute;cifique</strong> : <br />- l&rsquo;action est faite dans une fonction qui doit &ecirc;tre sp&eacute;cifiquement attach&eacute;e au signal donn&eacute;. <br />- cet attachement est valable pour toute la dur&eacute;e du programme.</p>
-<p><ins>A l&rsquo;arriv&eacute;e du signal</ins> : <br />&ndash; le traitement en est <mark><strong>interrompu</strong></mark> <br />&ndash; la fonction est ex&eacute;cut&eacute;e<br />&ndash; le traitement est repris o&ugrave; il en &eacute;tait avant <strong>l'interruption</strong></p>
-</div>
-<hr />
-<h1 id="programmation-systeme-signaux">It&eacute;ration 2 - Fonctionnement multi-client</h1>
-<hr />
-<h2 id="definition">Cahier des charges</h2>
-<ul>
-<li>Le programme server prends maintenant&nbsp;<strong>2 param&egrave;tres</strong></li>
-<li>Le nom du pipe</li>
-<li>Le nombre N de clients</li>
-<li>Au d&eacute;marrage il instancie N clients qui peuvent lui parler (<strong>1 client = 1 shell</strong>)</li>
-<li>Des clients peuvent &ecirc;tre cr&eacute;es manuellement en plus par la suite</li>
-<li>On&nbsp;prot&egrave;gela mort du server par&nbsp;CTRL+C</li>
-<li>Le serveur sait r&eacute;pondre &agrave; des questions basiques des clients (fix&eacute;es) :</li>
-</ul>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img title="progwait" src="../assets/images/processus/progwait.JPG" alt="progwait" /></p>
-<hr />
-<h2 id="exemples-de-signaux">Fonctionnement</h2>
 <p>L&rsquo;it&eacute;ration 2 met en place une communication entre le serveur et plusieurs clients.</p>
 <p>Les fichier correspondant &agrave; cette it&eacute;ration se trouvera dans le dossier main.</p>
 <p>&nbsp;</p>
