@@ -889,38 +889,28 @@
 <p><ins>A l&rsquo;arriv&eacute;e du signal</ins> : <br />&ndash; le traitement en est <mark><strong>interrompu</strong></mark> <br />&ndash; la fonction est ex&eacute;cut&eacute;e<br />&ndash; le traitement est repris o&ugrave; il en &eacute;tait avant <strong>l'interruption</strong></p>
 </div>
 <hr />
-<h2 id="primitives">Primitives</h2>
-<h3 id="signal">Signal</h3>
-<div class="admonition abstract">
-<p>La primitive <code>signal()</code> permet de sp&eacute;cifier le comportement d&rsquo;un processus &agrave; la r&eacute;ception d&rsquo;un signal donn&eacute;. C'est une fonction <strong>non bloquante</strong> qu'il faut voir comme une configuration utilis&eacute;e plus tard, lors de la reception du signal.</p>
-</div>
-<div class="admonition tip">
-<p>-&gt; Intercepte le signal de num&eacute;ro sig <br />-&gt; Ex&eacute;cute la fonction fcn</p>
-</div>
-<h4 id="exemples">Exemples</h4>
-<h3 id="kill">Kill</h3>
-<div class="admonition abstract">
-<p>La primitive <code>kill()</code> permet <strong>d&rsquo;envoyer un signal</strong> &agrave; un processus, via son <strong>PID</strong>.<br />L&rsquo;envoi de signal ne peut se faire qu&rsquo;entre t&acirc;ches de m&ecirc;me UID.<br />Si on utilise PID = 0 : tous les processus du <ins>groupe</ins> sont concern&eacute;s (broadcast).</p>
-</div>
-<div class="admonition danger">
-<p>Elle envoie n'importe quel signal, pas uniquement <code>SIGKILL</code> malgr&egrave;s son nom !!</p>
-</div>
-<h4 id="exemples_1">Exemples</h4>
-<h3 id="pause">Pause</h3>
-<div class="admonition abstract">
-<p>La primitive <code>pause()</code> correspond &agrave; de l&rsquo;attente pure, d'un signal <strong>quelconque</strong>. C'est une fonction <strong>bloquante</strong>.</p>
-</div>
-<h4 id="exemple">Exemple</h4>
-<h3 id="alarm">Alarm</h3>
-<div class="admonition abstract">
-<p>La primitive <code>alarm()</code> envoi un signal de type <code>SIGALRM</code> au processus appelant apr&egrave;s laps de temps (en seconde).<br />C'est une fonction <strong>non bloquante</strong>.</p>
-</div>
-<h4 id="exemple_1">Exemple</h4>
+<h1 id="programmation-systeme-signaux">It&eacute;ration 2 - Fonctionnement multi-client</h1>
 <hr />
-<h2 id="exemple-complet">Exemple complet</h2>
-<div class="admonition warning">
-<p>La position de l'appel &agrave; <code>signal()</code> dans le programme est tr&egrave;s importante !<br />La configuration doit &ecirc;tre faite avant la reception du signal en question !</p>
-</div>
+<h2 id="definition">Cahier des charges</h2>
+<ul>
+<li>Le programme server prends maintenant&nbsp;<strong>2 param&egrave;tres</strong></li>
+<li>Le nom du pipe</li>
+<li>Le nombre N de clients</li>
+<li>Au d&eacute;marrage il instancie N clients qui peuvent lui parler (<strong>1 client = 1 shell</strong>)</li>
+<li>Des clients peuvent &ecirc;tre cr&eacute;es manuellement en plus par la suite</li>
+<li>On&nbsp;prot&egrave;gela mort du server par&nbsp;CTRL+C</li>
+<li>Le serveur sait r&eacute;pondre &agrave; des questions basiques des clients (fix&eacute;es) :</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img title="progwait" src="../assets/images/processus/progwait.JPG" alt="progwait" /></p>
+<hr />
+<h2 id="exemples-de-signaux">Fonctionnement</h2>
+<p>L&rsquo;it&eacute;ration 2 met en place une communication entre le serveur et plusieurs clients.</p>
+<p>Les fichier correspondant &agrave; cette it&eacute;ration se trouvera dans le dossier main.</p>
+<p>&nbsp;</p>
+<p>Les processus&nbsp;p&egrave;re (serveur) et fils (client) communiquent comme pr&eacute;c&eacute;demment via un pipe nomm&eacute; &laquo;&nbsp;<strong>pipe</strong>&nbsp;&raquo;.</p>
+<p>Apr&egrave;s compilation et ex&eacute;cution du fichier <strong>serveur.c</strong>, la communication est fonctionnelle.</p>
+<p>Afin d&rsquo;instancier un nombre N de clients souhait&eacute;, l&rsquo;ex&eacute;cution se fera gr&acirc;ce &agrave; la commande suivante&nbsp;: <strong>./serveur X pipe</strong> (la variable X repr&eacute;sentant le nombre de client voulu).</p>
+<p><img title="progwait" src="../assets/images/processus/pipe.JPG" alt="progwait" /></p>
                 
               
               
