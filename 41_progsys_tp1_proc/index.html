@@ -1035,86 +1035,14 @@
 <p><img title="filiation" src="../assets/images/processus/filiation.JPG" alt="filiation" /></p>
 <hr />
 <h2 id="exemple-basique">Fonctionnement</h2>
-<div class="admonition abstract">
-<p>Apr&egrave;s fork :</p>
-</div>
-<p>Affichons les PID respectifs :</p>
-<p>Affichages :</p>
-<div class="admonition abstract">
-<p>PID diff&eacute;rents: 1234 et 2345<br />Les 2 processus ex&eacute;cute <strong>le m&ecirc;me programme</strong> !</p>
-</div>
-<div class="admonition warning">
-<p>On ne peut pas pr&eacute;dire l'ordre des <code>printf</code> !!</p>
-</div>
-<hr />
-<h2 id="synchronisation">Synchronisation</h2>
-<h3 id="primitives_1">Primitives</h3>
-<h4 id="exit">Exit</h4>
-<table class="highlighttable">
-<tbody>
-<tr>
-<td class="linenos">
-<div class="linenodiv">
-<pre>1</pre>
-</div>
-</td>
-<td class="code">
-<div class="highlight">
-<pre><code><span class="kt">void</span> <span class="nf">exit</span><span class="p">(</span><span class="kt">int</span> <span class="n">status</span><span class="p">);</span>
-</code></pre>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition abstract">
-<p>Exit :</p>
-<p>&ndash; termine le processus appelant.<br />&ndash; transmet la valeur de status (le <mark><strong>mot d&rsquo;&eacute;tat</strong></mark>) au processus p&egrave;re<br />&ndash; ferme les descripteurs de fichiers ouverts<br />&ndash; un signal <mark><strong>SIGCHLD</strong></mark> est envoy&eacute; au processus p&egrave;re.</p>
-</div>
-<h4 id="wait">Wait</h4>
-<div class="admonition abstract">
-<p>Wait :</p>
-<p>&ndash; <mark><strong>attend</strong></mark> la <em>terminaison ou l'arr&ecirc;t</em> d'un processus fils (fils <em>quelconque</em>).<br />&ndash; retourne le PID d'un processus termin&eacute;, -1 en cas d&rsquo;erreur (si tous sont d&eacute;j&agrave; termin&eacute;s).<br />&ndash; <strong>stocke</strong> la valeur transmise par le fils (exit) dans l'entier point&eacute; par status.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Le status est cod&eacute; sur le 2&egrave;me octet de l'int point&eacute; :</p>
+<p>L&rsquo;it&eacute;ration 1 met en place une communication entre le serveur et un unique client.</p>
+<p>Le fichier correspondant &agrave; cette it&eacute;ration se trouvera dans le dossier Backup &gt; (cf cheminement ci-dessous).</p>
 <p><img title="status" src="../assets/images/processus/status.JPG" alt="status" /></p>
-</div>
-<p><img title="progwait" src="../assets/images/processus/progwait.JPG" alt="progwait" /></p>
-<hr />
-<h2 id="exemple-complet">Exemple complet</h2>
-<p>Affichages :</p>
-<div class="admonition warning">
-<p>On ne peut pas pr&eacute;dire l'ordre des 3 premiers <code>printf</code>. <br />Par contre on sait forc&eacute;ment que l'affichage du <code>status</code> se fera en dernier !</p>
-</div>
-<div class="admonition abstract">
-<ul>
-<li>Lorsqu&rsquo;un processus se termine (<ins class="critic">exit</ins>), le syst&egrave;me d&eacute;truit son contexte, <strong>sauf son entr&eacute;e de la table des processus</strong></li>
-<li>Le procesus est alors dit dans un &eacute;tat <mark><strong>ZOMBI</strong></mark> (momentan&eacute; si bien cod&eacute;)</li>
-<li>Le processus p&egrave;re r&eacute;cup&egrave;re la mort de son fils (<ins class="critic">wait</ins>), et <strong>d&eacute;truit</strong> son entr&eacute;e de la table des processus.</li>
-<li>Le fils dispara&icirc;t compl&egrave;tement du syst&egrave;me (n&rsquo;est plus zombi).</li>
-</ul>
-<p>La communication entre le fils zombi et le p&egrave;re s &rsquo;effectue par le biais d &rsquo;un signal transmis du fils vers le p&egrave;re (signal <strong>SIGCHLD</strong> : la mort du fils).</p>
-<p>Un processus fils d&eacute;funt <strong>reste zombie</strong> jusqu&rsquo;&agrave; ce que son <strong>p&egrave;re ait pris connaissance de sa mort</strong> (wait).</p>
-</div>
-<div class="admonition danger">
-<p class="admonition-title">Danger</p>
-<p><strong>Une mauvaise synchronisation = saturation table des processus = blocage total du syst&egrave;me !</strong></p>
-</div>
-<hr />
-<h2 id="adoption">Adoption</h2>
+<p>Les processus&nbsp;p&egrave;re (serveur) et fils (client) communiquent comme souhait&eacute; via un pipe nomm&eacute; dans ce projet &laquo;&nbsp;<strong>pipe</strong>&nbsp;&raquo;.</p>
+<p>Apr&egrave;s compilation et ex&eacute;cution du fichier <strong>serveur.c</strong>, la communication est fonctionnelle&nbsp;:</p>
 <p><img title="adopt" src="../assets/images/processus/adopt.JPG" alt="adopt" /></p>
-<div class="admonition abstract">
-<p>Si le p&egrave;re d&eacute;c&egrave;de avant le fils alors le fils deviendra <mark><strong>orphelin</strong></mark> et sera <strong>adopt&eacute;</strong> par le processus de PID 1 (init).</p>
-</div>
-<hr />
-<h2 id="exemple-de-zombi">Exemple de Zombi</h2>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Ceci est un code faux ... &agrave; des fins p&eacute;dagogiques !</p>
-</div>
-<p>On suppose que le pid du p&egrave;re est 1234 et celui du fils est 2345.</p>
+<p>Un client est appel&eacute; via un nouveau terminal de commande.</p>
+<p>La fermeture du client s&rsquo;effectue gr&acirc;ce au combo <strong>CTRL + D </strong>(message ctrld trac&eacute; sur le terminal serveur).</p>
                 
               
               
