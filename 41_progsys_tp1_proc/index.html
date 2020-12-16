@@ -1043,6 +1043,10 @@
 <p><img title="adopt" src="../assets/images/processus/adopt.JPG" alt="adopt" /></p>
 <p>Un client est appel&eacute; via un nouveau terminal de commande.</p>
 <p>La fermeture du client s&rsquo;effectue gr&acirc;ce au combo <strong>CTRL + D </strong>(message ctrld trac&eacute; sur le terminal serveur).</p>
+<p>Au niveau du code, nous avons d&eacute;cid&eacute; de transf&eacute;rer une chaine d&rsquo;au maximum 200 caract&egrave;res dans le pipe. Cela nous permet de pouvoir transf&eacute;rer une commande du client que nous estimons largement suffisante.</p>
+<p>&nbsp;</p>
+<p>Dans le code client, la chaine de caract&egrave;res entr&eacute;e par l&rsquo;utilisateur est envoy&eacute;e dans le pipe via la fonction write. De l&rsquo;autre c&ocirc;t&eacute;, le serveur scrute le pipe et utilise la fonction read pour enregistrer la commande du client.</p>
+<p>De plus, la mise en place de boucle dans le processus fils nous permet de laisser le serveur actif m&ecirc;me apr&egrave;s l&rsquo;envoi d&rsquo;un signal SIGKILL au client &agrave; la suite du combo CTRL+D.</p>
                 
               
               
